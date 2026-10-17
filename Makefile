@@ -146,7 +146,8 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
-        $U/_settest\
+	$U/_settest\
+	$U/_stridetest\
 	$U/_hello\
 	$U/_logstress\
 	$U/_forphan\
