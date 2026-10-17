@@ -2,13 +2,15 @@ CS-333 Operating Systems, Fall 2026
 Assignment 2: Stride Scheduler for xv6-riscv (Module 9)
 
 Team
-    Sukaina Nasir  (00000506084)  Person 1 
-    Fatima Nisar   (00000504590)  Person 2
-    Maryam Asif    (00000507587)  Person 3
+  Fatima Nisar   (00000504590)  Person 2
+  Sukaina Nasir  (00000506084)  Person 1
+  Maryam Asif    (00000507587)  Person 3
 
 Team repository: https://github.com/sukaina8n/xv6-stride  (branch: riscv)
 
+----------------------------------------------------------------------
 1. What this is
+----------------------------------------------------------------------
 xv6's round-robin scheduler is replaced with a stride scheduler.
 Every process has tickets; more tickets means more CPU.
   stride = STRIDE1 / tickets      (STRIDE1 = 10000)
@@ -25,24 +27,32 @@ Who did which part:
   Part 3 (Maryam):  user/stridetest.c, README, contribution statement,
         design note
 
-2. Tools needed (Ubuntu)
+----------------------------------------------------------------------
+2. Tools needed (Ubuntu / Google Cloud Shell)
+----------------------------------------------------------------------
   sudo apt update
   sudo apt install git build-essential gdb-multiarch qemu-system-misc \
        gcc-riscv64-linux-gnu binutils-riscv64-linux-gnu
 (If qemu-system-riscv64 is not found on a newer Ubuntu:
   sudo apt install qemu-system-riscv)
 
+----------------------------------------------------------------------
 3. Build and run
+----------------------------------------------------------------------
   make clean
   make qemu CPUS=1
 
 CPUS=1 is used so the scheduling results are reproducible.
 At the xv6 $ prompt run:
+
   settest
   stridetest
+
 To quit QEMU press Ctrl-a, then x.
 
+----------------------------------------------------------------------
 4. Test programs
+----------------------------------------------------------------------
 settest (user/settest.c)  - tests the settickets system call only.
   Expected output:
     settickets(50) = 0 (expect 0)
@@ -65,14 +75,19 @@ stridetest (user/stridetest.c) - tests the scheduler.
   Edge case that is NOT handled: settickets(n) with n > 10000 makes
   the stride 0 (see the design note, limitations).
 
+----------------------------------------------------------------------
 5. Files in this submission
+----------------------------------------------------------------------
   xv6 source tree (after make clean)
   user/stridetest.c, user/settest.c   test programs
   README.txt                          this file
   CONTRIBUTIONS.txt                   contribution statement
-  Design_Note.pdf                     design note
+  Design_Note.pdf                     design note (files changed, code,
+                                      screenshots, output, limitations)
 
+----------------------------------------------------------------------
 6. AI and online help used
+----------------------------------------------------------------------
   - xv6 book, Chapter 7 "Scheduling", and the original scheduler() in
     kernel/proc.c (https://github.com/mit-pdos/xv6-riscv)
   - C. A. Waldspurger and W. E. Weihl, "Stride Scheduling:
@@ -80,6 +95,5 @@ stridetest (user/stridetest.c) - tests the scheduler.
   - Claude (Anthropic): used by Fatima Nisar for guidance on the
     smallest-pass scheduler design, setup and git steps, and to help
     draft and format the Part 2 section of the design note.
-  - Claude (Anthropic): used by Maryam Asif for guidance on the
-    user/stridetest.c and assembling of combined design note.
+  - Claude (Anthropic): used by Maryam Asif : guidance on checking stridetest.c and assembling document. 
   - Claude (Anthropic) : used by Sukaina for guidance on design of the settickets system call and new process fileds
